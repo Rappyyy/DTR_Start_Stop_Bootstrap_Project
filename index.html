@@ -15,7 +15,7 @@
   <body>
     <div class="row">
       <!-- Sidebar -->
-      <div class="col-2 bg-dark text-center text-white vh-100">Sidebar</div>
+      <div class="col-2 bg-dark text-center text-white vh-100%">Sidebar</div>
       <!-- Sidebar ending -->
 
       <!-- For Content column-->
@@ -50,8 +50,9 @@
             <!-- Begin recording text -->
 
             <!-- Select form -->
-            <div class="row mt-5 ms-5 mb-5">
-              <div class="col-10 ms-5 mb-5">
+            <div class="select-form-container"></div>
+            <div class="row mt-5">
+              <div class="col-8 ms-5">
                 <select
                   class="form-select form-select-lg mb-3 ms-5 w-100%"
                   aria-label="Small select example"
@@ -64,10 +65,54 @@
             <!-- Select form ending -->
 
             <!-- Button -->
-            <button type="button" class="btn btn-success btn-lg mt-5 w-25">
-              START WORK
-            </button>
+            <div class="row">
+              <div class="col mb-5">
+                <button
+                  type="button"
+                  class="btn btn-success btn-lg mt-5 mb-5 w-25"
+                >
+                  START WORK
+                </button>
+              </div>
+            </div>
             <!-- Button ending-->
+
+            <!-- Log entries -->
+            <div class="container mt-5">
+              <div class="row">
+                <div class="col-md-8 offset-md-2 mt-5">
+                  <div class="card mt-5">
+                    <div class="card-header">Log Entries</div>
+                    <div class="card-body">
+                      <div class="log">
+                        <!-- Sample log entry -->
+                        <p>
+                          Log entry 1: This is a sample log entry for testing
+                          purposes.
+                        </p>
+                        <p>
+                          Log entry 2: Another log entry with some details and
+                          timestamp.
+                        </p>
+                        <p>
+                          Log entry 3: A third log entry to demonstrate the log
+                          container.
+                        </p>
+                        <p>
+                          Log entry 4: You can add as many log entries as
+                          needed.
+                        </p>
+                        <p>
+                          Log entry 5: Each entry can have a timestamp or other
+                          relevant information.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Log entries ending -->
           </div>
         </div>
         <!-- Content ending -->
