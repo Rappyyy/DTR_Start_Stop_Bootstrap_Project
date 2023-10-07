@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StartStop prac bootstrap</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-lg-2 bg-dark d-lg-block position-sticky">
+          <div class="hamburger-button">
+            <button class="btn btn-dark d-lg-none" id="sidebar-toggle-button">
+              &#9776;
+            </button>
+          </div>
+          <div class="sidebar-content">
+            Sidebar
+          </div>
+        </nav>
+        <!-- Sidebar ending -->
+
+        <!-- For Content column -->
+        <div class="col-12 col-lg-10 text-center d-flex justify-content-center">
+          <div class="row mt-5 me-5 m-5">
+            <div class="col mt-5">
+              <!-- For image -->
+              <img
+                height="200px"
+                width="200px"
+                id="profile"
+                class="rounded-circle shadow-4-strong"
+                alt="profile"
+                src="imgs\profile.png"
+              />
+              <!-- Image ending -->
+
+              <!-- For Hi greeting -->
+              <div class="row mt-3 text-success fs-3 custom-font-hi">
+                <div class="col">Hi, Ralph Fuentes!</div>
+              </div>
+              <!-- Hi greeting ending -->
+
+              <!-- Begin recording text -->
+              <div class="row mt-4 fs-4 custom-font-begin">
+                <div class="col">
+                  To begin recording your work time, simply click the "Start work"
+                  button.
+                </div>
+              </div>
+              <!-- Begin recording text -->
+
+              <!-- Select form -->
+              <div class="select-form-container"></div>
+              <div class="row mt-5 ">
+                <div class="col-xl-11 col-lg-11 col-md-11 me-4 ms-2  col-sm-11 col-11 ">
+                  <select
+                    class="form-select form-select-lg w-100% custom-select-margin"
+                    aria-label="Small select example"
+                  >
+                    <option selected>Work</option>
+                    <option value="1">Meeting</option>
+                  </select>
+                </div>
+              </div>
+              <!-- Select form ending -->
+
+              <!-- Button -->
+              <div class="row">
+                <div class="col-12 mb-5 text-center">
+                  <button
+                    type="button"
+                    class="btn btn-success btn-lg mt-5 w-50 btn-resize"
+                  >
+                    START WORK
+                  </button>
+                </div>
+              </div>
+              <!-- Button ending-->
+
+              <!-- Log entries -->
+              <div class="container mt-3">
+                <div class="row ">
+                  <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 offset-md-2 mt-5">
+                    <div class="card mt-5">
+                      <div class="card-header">Log Entries</div>
+                      <div class="card-body">
+                        <div class="log d-flex flex-wrap">
+                          <!-- Sample log entry -->
+                          <p class="flex-fill">
+                            Log entry 1: This is a sample log entry for testing
+                            purposes.
+                          </p>
+                          <p class="flex-fill">
+                            Log entry 2: Another log entry with some details and
+                            timestamp.
+                          </p>
+                          <p class="flex-fill">
+                            Log entry 3: A third log entry to demonstrate the log
+                            container.
+                          </p>
+                          <p class="flex-fill">
+                            Log entry 4: You can add as many log entries as
+                            needed.
+                          </p>
+                          <p class="flex-fill">
+                            Log entry 5: Each entry can have a timestamp or other
+                            relevant information.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Log entries ending -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script>
+      // Sidebar Toggle
+      var sidebar = document.getElementById("sidebar");
+      var toggleButton = document.getElementById("sidebar-toggle-button");
+
+      toggleButton.addEventListener("click", function () {
+        sidebar.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
