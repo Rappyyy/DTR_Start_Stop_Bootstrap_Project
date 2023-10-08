@@ -11,6 +11,8 @@
     crossorigin="anonymous"
   />
   <link rel="stylesheet" href="WorkInProgress.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="row">
@@ -41,21 +43,24 @@
               src="imgs\profile.png"
             />
             <!-- Image ending -->
-            
 
+            <div class="row mt-3 text-success fs-3 text-center custom-font-hi">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-briefcase me-3 ms-5"></i>
+                    <span>Work in progress</span>
                 </div>
-                <div class="col">
-                    <div class="form-floating mt-4 ms-5">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                        <label for="floatingTextarea2">Comments</label>
-                      </div>
+            </div>
+            <div class="row mt-3">
+                <span>To begin stop your work time, simply click the "Stop work" button.</span>
+            </div>
                 </div>
+            
             </div>
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12  mt-5">
                     <div class="card mt-5">
-                      <div class="card-header w-100%">Log Entries</div>
-                      <div class="card-body w-100%">
+                      <div class="card-header">Log Entries</div>
+                      <div class="card-body ">
                         <div class="log d-flex flex-wrap">
                           <!-- Sample log entry -->
                           <p class="flex-fill">
@@ -83,6 +88,13 @@
                     </div>
                   </div>
             </div>
+        </div>
+        <div class="col">
+            <div class="form-floating mt-4 ms-5">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Comments</label>
+              </div>
+        </div>
         </div>
     
 </body>
