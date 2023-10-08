@@ -29,8 +29,8 @@
         </nav>
         <!-- Sidebar ending -->
 
-        <div class="col-6 text-center m-5">
-            Content
+        <div class="col-6 text-center mt-5">
+            
             <div class="row">
                 <div class="col mt-3">
                     <!-- For image -->
@@ -42,59 +42,81 @@
               alt="profile"
               src="imgs\profile.png"
             />
+               </div>
+            </div>
             <!-- Image ending -->
 
+            <!-- Work in progress -->
             <div class="row mt-3 text-success fs-3 " >
                 <div class="text-center">
                     <i class="fas fa-briefcase me-1 "></i>
                     <span>Work in progress</span>
                 </div>
             </div>
+            <!-- Work in progress ending -->
 
+            <!-- "To begin text start" -->
             <div class="row mt-3">
                 <span>To begin stop your work time, simply click the "Stop work" button.</span>
             </div>
+            <!-- "To begin text ending" -->
+
+        
+            <!-- "Stopwatch timer start" -->
+            <div class="row mt-4 text-center">
+                <div class="col">
+                    <div id="timer" class="display-1">00:00:00</div>
+                    
+                    <button id="stopButton" class="btn btn-danger mt-3">Stop</button>
                 </div>
-            
             </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12  mt-5">
-                    <div class="card mt-5">
-                      <div class="card-header">Log Entries</div>
-                      <div class="card-body ">
-                        <div class="log d-flex flex-wrap">
-                          <!-- Sample log entry -->
-                          <p class="flex-fill">
-                            Log entry 1: This is a sample log entry for testing
-                            purposes.
-                          </p>
-                          <p class="flex-fill">
-                            Log entry 2: Another log entry with some details and
-                            timestamp.
-                          </p>
-                          <p class="flex-fill">
-                            Log entry 3: A third log entry to demonstrate the log
-                            container.
-                          </p>
-                          <p class="flex-fill">
-                            Log entry 4: You can add as many log entries as
-                            needed.
-                          </p>
-                          <p class="flex-fill">
-                            Log entry 5: Each entry can have a timestamp or other
-                            relevant information.
-                          </p>
-                        </div>
-                      </div>
+            
+            <!-- "Stopwatch timer ending" -->
+            
+            
+         <!-- Log entries -->
+         <div class="container mt-3">
+            <div class="row ">
+              <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 offset-md-2 mt-5 mb-5">
+                <div class="card mt-5">
+                  <div class="card-header">Log Entries</div>
+                  <div class="card-body">
+                    <div class="log d-flex flex-wrap">
+                      <!-- Sample log entry -->
+                      <p class="flex-fill">
+                        Log entry 1: This is a sample log entry for testing
+                        purposes.
+                      </p>
+                      <p class="flex-fill">
+                        Log entry 2: Another log entry with some details and
+                        timestamp.
+                      </p>
+                      <p class="flex-fill">
+                        Log entry 3: A third log entry to demonstrate the log
+                        container.
+                      </p>
+                      <p class="flex-fill">
+                        Log entry 4: You can add as many log entries as
+                        needed.
+                      </p>
+                      <p class="flex-fill">
+                        Log entry 5: Each entry can have a timestamp or other
+                        relevant information.
+                      </p>
                     </div>
                   </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="col">
-            <div class="form-floating mt-4 ms-5">
+        <div class="col m-5">
+            <div class="row">
+            <div class="form-floating mt-5">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
                 <label for="floatingTextarea2">Comments</label>
               </div>
+            </div>
         </div>
         </div>
     
