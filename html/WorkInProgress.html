@@ -83,28 +83,7 @@
               <div class="card mt-5">
                 <div class="card-header">Log Entries</div>
                 <div class="card-body">
-                  <div class="log d-flex flex-wrap">
-                    <!-- Sample log entry -->
-                    <p class="flex-fill">
-                      Log entry 1: This is a sample log entry for testing
-                      purposes.
-                    </p>
-                    <p class="flex-fill">
-                      Log entry 2: Another log entry with some details and
-                      timestamp.
-                    </p>
-                    <p class="flex-fill">
-                      Log entry 3: A third log entry to demonstrate the log
-                      container.
-                    </p>
-                    <p class="flex-fill">
-                      Log entry 4: You can add as many log entries as needed.
-                    </p>
-                    <p class="flex-fill">
-                      Log entry 5: Each entry can have a timestamp or other
-                      relevant information.
-                    </p>
-                  </div>
+                  <div class="log d-flex flex-wrap"></div>
                 </div>
               </div>
             </div>
@@ -118,9 +97,9 @@
               class="form-control"
               placeholder="Leave a comment here"
               id="floatingTextarea2"
-              style="height: 100px"
+              style="height: 650px"
             ></textarea>
-            <label for="floatingTextarea2">Comments</label>
+            <label for="floatingTextarea2 "></label>
           </div>
         </div>
       </div>
@@ -130,7 +109,7 @@
         // Extract the selected hours and work type from the URL
         var urlParams = new URLSearchParams(window.location.search);
         var selectedHours = urlParams.get("hours");
-        var selectedWorkType = urlParams.get("work_type"); // Correct the parameter name
+        var selectedWorkType = urlParams.get("work_type");
 
         if (selectedHours) {
           // Convert the selected hours to milliseconds
@@ -157,10 +136,20 @@
           setInterval(updateTimer, 1000);
         }
 
-        // Check the work type and update the text accordingly
-        if (selectedWorkType === "Meeting") {
-          document.getElementById("work-type-text").textContent =
-            "Meeting in progress";
+        // Display log entries
+        var logContainer = document.querySelector(".log");
+
+        if (selectedWorkType) {
+          var timestamp = new Date().toLocaleString();
+          var logEntryText = selectedWorkType + " started at " + timestamp;
+
+          var logEntry = document.createElement("p");
+          logEntry.textContent = logEntryText;
+          logContainer.appendChild(logEntry);
+
+          // Update the work type text
+          var workTypeText = document.getElementById("work-type-text");
+          workTypeText.textContent = selectedWorkType + " in progress";
         }
       });
     </script>
