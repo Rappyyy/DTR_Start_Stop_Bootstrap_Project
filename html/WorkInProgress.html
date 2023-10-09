@@ -47,20 +47,18 @@
         </div>
         <!-- Image ending -->
 
-        <!-- Work in progress -->
         <div class="row mt-3 text-success fs-3">
           <div class="text-center">
             <i class="fas fa-briefcase me-1"></i>
-            <span>Work in progress</span>
+            <span id="work-type-text">Work in progress</span>
+            <!-- Add id attribute -->
           </div>
         </div>
-        <!-- Work in progress ending -->
 
         <!-- "To begin text start" -->
         <div class="row mt-3">
           <span
-            >To begin stop your work time, simply click the "Stop work"
-            button.</span
+            >To stop your work time, simply click the "Stop work" button.</span
           >
         </div>
         <!-- "To begin text ending" -->
@@ -129,30 +127,41 @@
     </div>
     <script>
       $(document).ready(function () {
-        // Initialize variables for the timer
-        let timer;
-        let startTime;
+        // Extract the selected hours and work type from the URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var selectedHours = urlParams.get("hours");
+        var selectedWorkType = urlParams.get("work_type"); // Correct the parameter name
 
-        // Function to update the timer display
-        function updateTimer() {
-          const currentTime = new Date();
-          const elapsedTime = new Date(currentTime - startTime);
-          const hours = elapsedTime.getUTCHours();
-          const minutes = elapsedTime.getUTCMinutes();
-          const seconds = elapsedTime.getUTCSeconds();
-          const formattedTime = `${hours}:${minutes}:${seconds}`;
-          $("#timer").text(formattedTime);
+        if (selectedHours) {
+          // Convert the selected hours to milliseconds
+          var countdownTime = selectedHours * 60 * 60 * 1000; // hours * minutes * seconds * milliseconds
+
+          // Update the countdown timer every second
+          var timerElement = document.getElementById("timer");
+
+          function updateTimer() {
+            countdownTime -= 1000; // Subtract 1 second
+            if (countdownTime <= 0) {
+              // Timer has reached 0, you can perform an action here
+              timerElement.innerHTML = "Time's up!";
+            } else {
+              // Format the remaining time as HH:MM:SS
+              var hours = Math.floor(countdownTime / 3600000);
+              var minutes = Math.floor((countdownTime % 3600000) / 60000);
+              var seconds = Math.floor((countdownTime % 60000) / 1000);
+              timerElement.innerHTML = hours + ":" + minutes + ":" + seconds;
+            }
+          }
+
+          // Call updateTimer every second
+          setInterval(updateTimer, 1000);
         }
 
-        // Add a click event listener to the "Stop" button
-        $("#stopButton").click(function () {
-          // Clear the timer when the "Stop" button is clicked
-          clearInterval(timer);
-        });
-
-        // Start the timer when the page loads
-        startTime = new Date();
-        timer = setInterval(updateTimer, 1000);
+        // Check the work type and update the text accordingly
+        if (selectedWorkType === "Meeting") {
+          document.getElementById("work-type-text").textContent =
+            "Meeting in progress";
+        }
       });
     </script>
   </body>
