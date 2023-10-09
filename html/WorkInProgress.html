@@ -111,6 +111,23 @@
         var selectedHours = urlParams.get("hours");
         var selectedWorkType = urlParams.get("work_type");
 
+        // Function to display log entries
+        function displayLogEntries(logEntries) {
+          var logContainer = document.querySelector(".log");
+          logContainer.innerHTML = ""; // Clear the log container
+
+          logEntries.forEach(function (entry) {
+            var logEntry = document.createElement("p");
+            logEntry.textContent = entry;
+            logContainer.appendChild(logEntry);
+          });
+        }
+
+        // Display log entries when the page loads
+        var savedLogEntries =
+          JSON.parse(localStorage.getItem("logEntries")) || [];
+        displayLogEntries(savedLogEntries);
+
         if (selectedHours) {
           // Convert the selected hours to milliseconds
           var countdownTime = selectedHours * 60 * 60 * 1000; // hours * minutes * seconds * milliseconds
@@ -136,16 +153,20 @@
           setInterval(updateTimer, 1000);
         }
 
-        // Display log entries
-        var logContainer = document.querySelector(".log");
-
         if (selectedWorkType) {
           var timestamp = new Date().toLocaleString();
-          var logEntryText = selectedWorkType + " started at " + timestamp;
 
-          var logEntry = document.createElement("p");
-          logEntry.textContent = logEntryText;
-          logContainer.appendChild(logEntry);
+          // Retrieve existing log entries from local storage
+          var logEntries = JSON.parse(localStorage.getItem("logEntries")) || [];
+
+          // Add the new log entry to the array
+          logEntries.unshift(logEntryText); // Add at the beginning to keep it in chronological order
+
+          // Save the updated log entries back to local storage
+          localStorage.setItem("logEntries", JSON.stringify(logEntries));
+
+          // Display the updated log entries
+          displayLogEntries(logEntries);
 
           // Update the work type text
           var workTypeText = document.getElementById("work-type-text");
