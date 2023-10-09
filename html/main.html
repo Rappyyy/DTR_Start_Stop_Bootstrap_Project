@@ -10,7 +10,8 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="html\css\main.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -19,8 +20,8 @@
         <nav id="sidebar" class="col-lg-2 bg-dark d-lg-block position-sticky">
           <div class="hamburger-button">
             <button class="btn btn-dark d-lg-none" id="sidebar-toggle-button">
-              &#9776;</button
-            >2
+              &#9776;
+            </button>
           </div>
           <div class="sidebar-content">Sidebar</div>
         </nav>
@@ -76,6 +77,7 @@
                   <button
                     type="button"
                     class="btn btn-success btn-lg mt-5 w-50 btn-resize"
+                    id="start-work-button"
                   >
                     START WORK
                   </button>
@@ -84,10 +86,10 @@
               <!-- Button ending-->
 
               <!-- Log entries -->
-              <div class="container mt-3">
+              <div class="container">
                 <div class="row">
                   <div
-                    class="col-xl-8 col-lg-8 col-md-8 col-sm-12 offset-md-2 mt-5"
+                    class="col-xl-8 col-lg-8 col-md-8 col-sm-12 offset-md-2 mt-4"
                   >
                     <div class="card mt-5">
                       <div class="card-header">Log Entries</div>
@@ -132,14 +134,11 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-
     <script>
-      // Sidebar Toggle
-      var sidebar = document.getElementById("sidebar");
-      var toggleButton = document.getElementById("sidebar-toggle-button");
-
-      toggleButton.addEventListener("click", function () {
-        sidebar.classList.toggle("active");
+      $(document).ready(function () {
+        $("#start-work-button").click(function () {
+          window.location.href = "WorkInProgress.html"; // Relative path to WorkInProgress.html
+        });
       });
     </script>
   </body>
