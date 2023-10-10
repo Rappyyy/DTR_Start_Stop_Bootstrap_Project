@@ -28,111 +28,139 @@
         <!-- Sidebar ending -->
 
         <!-- For Content column -->
-        <div class="col-12 col-lg-10 text-center d-flex justify-content-center">
-          <div class="row mt-5 me-5 m-5">
-            <div class="col mt-5">
-              <!-- For image -->
-              <img
-                height="200px"
-                width="200px"
-                id="profile"
-                class="rounded-circle shadow-4-strong"
-                alt="profile"
-                src="imgs\profile.png"
-              />
-              <!-- Image ending -->
-
-              <!-- For Hi greeting -->
-              <div class="row mt-3 text-success fs-3 custom-font-hi">
-                <div class="col">Hi, Ralph Fuentes!</div>
-              </div>
-              <!-- Hi greeting ending -->
-
-              <!-- Begin recording text -->
-              <div class="row mt-4 fs-4 custom-font-begin">
-                <div class="col">
-                  To begin recording your work time, simply click the "Start
-                  work" button.
+        <div class="col-10 text-center d-flex justify-content-center">
+          <div class="row m-5">
+            <!-- For image -->
+            <div class="container text-center">
+              <div class="row text-center">
+                <div class="col"></div>
+                <div class="col text-center">
+                  <img
+                    height="200px"
+                    width="200px"
+                    id="profile"
+                    class="rounded-circle shadow-4-strong"
+                    alt="profile"
+                    src="imgs\profile.png"
+                  />
                 </div>
+                <div class="col"></div>
               </div>
-              <!-- Begin recording text -->
+            </div>
+            <!-- Image ending -->
 
-              <!-- Select form -->
-              <div class="row mt-5">
-                <div class="col-12">
-                  <select
-                    class="form-select form-select-lg w-100% custom-select-margin"
-                    aria-label="Small select example"
-                    id="select-work-type"
-                  >
-                    <option selected>Work</option>
-                    <option value="Meeting">Meeting</option>
-                  </select>
-                </div>
-              </div>
-              <!-- Select form ending -->
-
-              <!-- Input hours form starting -->
-              <div class="row mt-5">
-                <div class="col-12">
-                  <select
-                    class="form-select form-select-lg w-100% custom-select-margin"
-                    aria-label="Small select example"
-                    id="select-hours"
-                  >
-                    <option selected>Select number of hours</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                  </select>
-                </div>
-              </div>
-              <!-- Input Hours form ending -->
-
-              <!-- Button -->
+            <!-- For Hi greeting -->
+            <div class="container text-center">
               <div class="row">
-                <div class="col-12 mb-5 text-center">
-                  <button
-                    type="button"
-                    class="btn btn-success btn-lg mt-5 w-50 btn-resize"
-                    id="start-work-button"
-                  >
-                    START WORK
-                  </button>
+                <div class="col"></div>
+                <div class="col">
+                  <div class="row mt-3 text-success fs-3 custom-font-hi">
+                    <div class="col">Hi, Ralph Fuentes!</div>
+                  </div>
                 </div>
+                <div class="col"></div>
               </div>
-              <!-- Button ending-->
+            </div>
+            <!-- Hi greeting ending -->
 
-              <!-- Log entries -->
-              <div class="container">
-                <div class="row">
-                  <div
-                    class="col-xl-8 col-lg-8 col-md-8 col-sm-12 offset-md-2 mt-4"
-                  >
-                    <div class="card mt-5">
-                      <div class="card-header">Log Entries</div>
-                      <div class="card-body">
-                        <div class="log d-flex flex-wrap"></div>
-                        <div class="pagination-container mt-4">
-                          <button id="prevPageButton" class="btn btn-secondary">
-                            Previous
-                          </button>
-                          <button id="nextPageButton" class="btn btn-secondary">
-                            Next
-                          </button>
-                        </div>
+            <!-- For Hi greeting -->
+            <div class="container text-center">
+              <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                  <div class="row mt-4 fs-4">
+                    <div class="col">
+                      To begin recording your work time, simply click the "Start
+                      work" button.
+                    </div>
+                  </div>
+                </div>
+                <div class="col"></div>
+              </div>
+            </div>
+            <!-- Hi greeting ending -->
+            <!-- Begin recording text -->
+
+            <!-- Select form -->
+            <div class="container text-center">
+              <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                  <div class="row mt-5">
+                    <div class="col">
+                      <select
+                        class="form-select form-select-lg w-75 ms-5"
+                        aria-label="Small select example"
+                        id="select-work-type"
+                      >
+                        <option selected>Work</option>
+                        <option value="Meeting">Meeting</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col"></div>
+              </div>
+            </div>
+            <!-- Select form ending -->
+
+            <!-- Input hours form starting -->
+            <div class="container mt-4">
+              <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                  <div class="form-group w-75 ms-5">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="numberInput"
+                      placeholder="Enter number of hours"
+                    />
+                  </div>
+                </div>
+                <div class="col"></div>
+              </div>
+            </div>
+            <!-- Input Hours form ending -->
+
+            <!-- Button -->
+            <div class="row">
+              <div class="col-12 cp mb-5 text-center">
+                <button
+                  type="button"
+                  class="btn btn-success btn-lg mt-5 ms-5 w-25 btn-resize"
+                  id="start-work-button"
+                >
+                  START WORK
+                </button>
+              </div>
+            </div>
+            <!-- Button ending-->
+
+            <!-- Log entries -->
+            <div class="container">
+              <div class="row">
+                <div
+                  class="col-xl-8 col-lg-8 col-md-8 col-sm-12 offset-md-2 mt-4"
+                >
+                  <div class="card mt-5">
+                    <div class="card-header">Log Entries</div>
+                    <div class="card-body">
+                      <div class="log d-flex flex-wrap"></div>
+                      <div class="pagination-container mt-4">
+                        <button id="prevPageButton" class="btn btn-secondary">
+                          Previous
+                        </button>
+                        <button id="nextPageButton" class="btn btn-secondary">
+                          Next
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- Log entries ending -->
             </div>
+            <!-- Log entries ending -->
           </div>
         </div>
       </div>
@@ -230,23 +258,6 @@
             "&work_type=" +
             selectedWorkType;
         });
-
-        //   // Function to display log entries
-        //   function displayLogEntries(logEntries) {
-        //     var logContainer = document.querySelector(".log");
-        //     logContainer.innerHTML = ""; // Clear the log container
-
-        //     logEntries.forEach(function (entry) {
-        //       var logEntry = document.createElement("p");
-        //       logEntry.textContent = entry;
-        //       logContainer.appendChild(logEntry);
-        //     });
-        //   }
-
-        //   // Retrieve and display log entries when the page loads
-        //   var savedLogEntries =
-        //     JSON.parse(localStorage.getItem("logEntries")) || [];
-        //   displayLogEntries(savedLogEntries);
       });
     </script>
   </body>
