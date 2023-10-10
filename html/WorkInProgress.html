@@ -106,6 +106,8 @@
     </div>
     <script>
       $(document).ready(function () {
+        var timerRunning = true; // Variable to track if the timer is running
+
         // Extract the selected hours and work type from the URL
         var urlParams = new URLSearchParams(window.location.search);
         var selectedHours = urlParams.get("hours");
@@ -136,21 +138,50 @@
           var timerElement = document.getElementById("timer");
 
           function updateTimer() {
-            countdownTime -= 1000; // Subtract 1 second
-            if (countdownTime <= 0) {
-              // Timer has reached 0, you can perform an action here
-              timerElement.innerHTML = "Time's up!";
-            } else {
-              // Format the remaining time as HH:MM:SS
-              var hours = Math.floor(countdownTime / 3600000);
-              var minutes = Math.floor((countdownTime % 3600000) / 60000);
-              var seconds = Math.floor((countdownTime % 60000) / 1000);
-              timerElement.innerHTML = hours + ":" + minutes + ":" + seconds;
+            if (timerRunning) {
+              countdownTime -= 1000; // Subtract 1 second
+              if (countdownTime <= 0) {
+                // Timer has reached 0, you can perform an action here
+                timerElement.innerHTML = "Time's up!";
+              } else {
+                // Format the remaining time as HH:MM:SS
+                var hours = Math.floor(countdownTime / 3600000);
+                var minutes = Math.floor((countdownTime % 3600000) / 60000);
+                var seconds = Math.floor((countdownTime % 60000) / 1000);
+                timerElement.innerHTML = hours + ":" + minutes + ":" + seconds;
+              }
             }
           }
 
           // Call updateTimer every second
-          setInterval(updateTimer, 1000);
+          var timerInterval; // Variable to store the timer interval
+          timerInterval = setInterval(updateTimer, 1000);
+
+          // Handle the "Stop" button click
+          $("#stopButton").click(function () {
+            clearInterval(timerInterval); // Stop the timer
+            var stopTimestamp = new Date().toLocaleString();
+            var stopEntryText =
+              selectedWorkType + " Stopped at " + stopTimestamp;
+
+            // Retrieve existing log entries from local storage
+            var logEntries =
+              JSON.parse(localStorage.getItem("logEntries")) || [];
+
+            // Add the stop entry to the array
+            logEntries.unshift(stopEntryText); // Add at the beginning to keep it in chronological order
+
+            // Save the updated log entries back to local storage
+            localStorage.setItem("logEntries", JSON.stringify(logEntries));
+
+            // Display the updated log entries
+            displayLogEntries(logEntries);
+
+            // Reset the timer to zero
+            countdownTime = 0;
+            timerElement.innerHTML = "00:00:00";
+            timerRunning = false;
+          });
         }
 
         if (selectedWorkType) {
@@ -159,7 +190,14 @@
           // Retrieve existing log entries from local storage
           var logEntries = JSON.parse(localStorage.getItem("logEntries")) || [];
 
-          // Add the new log entry to the array
+          // Add the new log entry to the array with a timestamp
+          var logEntryText =
+            selectedWorkType +
+            " started at " +
+            timestamp +
+            " for " +
+            selectedHours +
+            " hours";
           logEntries.unshift(logEntryText); // Add at the beginning to keep it in chronological order
 
           // Save the updated log entries back to local storage
