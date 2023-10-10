@@ -118,6 +118,14 @@
                       <div class="card-header">Log Entries</div>
                       <div class="card-body">
                         <div class="log d-flex flex-wrap"></div>
+                        <div class="pagination-container mt-4">
+                          <button id="prevPageButton" class="btn btn-secondary">
+                            Previous
+                          </button>
+                          <button id="nextPageButton" class="btn btn-secondary">
+                            Next
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -130,9 +138,62 @@
       </div>
     </div>
 
-    <!-- Inside your main.html -->
     <script>
       $(document).ready(function () {
+        var logEntriesPerPage = 5; // Number of log entries to display per page
+        var currentPage = 1; // Current page
+
+        // Function to display log entries for the current page
+        function displayLogEntries(logEntries) {
+          var logContainer = document.querySelector(".log");
+          logContainer.innerHTML = ""; // Clear the log container
+
+          var startIndex = (currentPage - 1) * logEntriesPerPage;
+          var endIndex = startIndex + logEntriesPerPage;
+          var logEntriesToDisplay = logEntries.slice(startIndex, endIndex);
+
+          logEntriesToDisplay.forEach(function (entry) {
+            var logEntry = document.createElement("p");
+            logEntry.textContent = entry;
+            logContainer.appendChild(logEntry);
+          });
+
+          // Update pagination buttons
+          updatePaginationButtons();
+        }
+
+        // Update pagination buttons
+        function updatePaginationButtons() {
+          var prevPageButton = document.getElementById("prevPageButton");
+          var nextPageButton = document.getElementById("nextPageButton");
+
+          prevPageButton.disabled = currentPage === 1;
+          nextPageButton.disabled =
+            currentPage * logEntriesPerPage >= savedLogEntries.length;
+        }
+
+        // Handle previous page button click
+        $("#prevPageButton").click(function () {
+          if (currentPage > 1) {
+            currentPage--;
+            displayLogEntries(savedLogEntries);
+          }
+        });
+
+        // Handle next page button click
+        $("#nextPageButton").click(function () {
+          var maxPages = Math.ceil(savedLogEntries.length / logEntriesPerPage);
+          if (currentPage < maxPages) {
+            currentPage++;
+            displayLogEntries(savedLogEntries);
+          }
+        });
+
+        // Retrieve and display log entries when the page loads
+        var savedLogEntries =
+          JSON.parse(localStorage.getItem("logEntries")) || [];
+        displayLogEntries(savedLogEntries);
+
         $("#start-work-button").click(function () {
           // Get the selected number of hours and work type
           var selectedHours = $("#select-hours option:selected").text();
@@ -170,22 +231,22 @@
             selectedWorkType;
         });
 
-        // Function to display log entries
-        function displayLogEntries(logEntries) {
-          var logContainer = document.querySelector(".log");
-          logContainer.innerHTML = ""; // Clear the log container
+        //   // Function to display log entries
+        //   function displayLogEntries(logEntries) {
+        //     var logContainer = document.querySelector(".log");
+        //     logContainer.innerHTML = ""; // Clear the log container
 
-          logEntries.forEach(function (entry) {
-            var logEntry = document.createElement("p");
-            logEntry.textContent = entry;
-            logContainer.appendChild(logEntry);
-          });
-        }
+        //     logEntries.forEach(function (entry) {
+        //       var logEntry = document.createElement("p");
+        //       logEntry.textContent = entry;
+        //       logContainer.appendChild(logEntry);
+        //     });
+        //   }
 
-        // Retrieve and display log entries when the page loads
-        var savedLogEntries =
-          JSON.parse(localStorage.getItem("logEntries")) || [];
-        displayLogEntries(savedLogEntries);
+        //   // Retrieve and display log entries when the page loads
+        //   var savedLogEntries =
+        //     JSON.parse(localStorage.getItem("logEntries")) || [];
+        //   displayLogEntries(savedLogEntries);
       });
     </script>
   </body>
