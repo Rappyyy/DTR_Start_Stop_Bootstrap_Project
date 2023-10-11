@@ -45,9 +45,9 @@
       </nav>
       <!-- Sidebar ending -->
 
-      <div class="col-6 text-center mt-5 m-2">
+      <div class="col-4 text-center mt-5 m-2">
         <div class="row">
-          <div class="col mt-3">
+          <div class="col mt-5">
             <!-- For image -->
             <img
               height="200px"
@@ -117,15 +117,25 @@
 
       <!-- Summernote editor -->
       <div class="col me-3 mt-5">
-        <div class="row me-5">
-          <div class="form-floating mt-5">
-            <div id="summernote"></div>
+        <div class="row">
+          <div class="col-10">
+            <div class="form-floating mt-5">
+              <div id="summernote" class="custom-summernote"></div>
+            </div>
           </div>
+          <div class="col"></div>
+          <div class="col"></div>
         </div>
       </div>
       <!-- Summernote editor ending -->
     </div>
     <script>
+      $("#summernote").summernote({
+        placeholder: "Take notes here",
+        tabsize: 2,
+        height: 295,
+      });
+
       $(document).ready(function () {
         var timerRunning = true; // Variable to track if the timer is running
         var logEntriesPerPage = 5; // Number of log entries to display per page
@@ -135,12 +145,6 @@
         var urlParams = new URLSearchParams(window.location.search);
         var selectedHours = urlParams.get("hours");
         var selectedWorkType = urlParams.get("work_type");
-
-        $("#summernote").summernote({
-          placeholder: "Hello Bootstrap 5",
-          tabsize: 2,
-          height: 275,
-        });
 
         // Function to display log entries for the current page
         function displayLogEntries(logEntries) {
