@@ -80,8 +80,7 @@
         <!-- "Stopwatch timer start" -->
         <div class="row mt-3 text-center">
           <div class="col">
-            <div id="timer" class="display-2">00:00:00</div>
-
+            <div id="timer" class="display-3">00:00:00</div>
             <button id="stopButton" class="btn btn-danger mt-5 w-25">
               Stop
             </button>
@@ -204,18 +203,39 @@
           // Update the countdown timer every second
           var timerElement = document.getElementById("timer");
 
+          // To change color of the text
+          var changeTextColor = document.getElementById("timer");
+
           function updateTimer() {
             if (timerRunning) {
               countdownTime -= 1000; // Subtract 1 second
+
+              if (countdownTime <= 10000) {
+                // Check if there are 10 seconds or less remaining
+                $("#timer").css("color", "red"); // Change the text color to red
+              }
+
               if (countdownTime <= 0) {
-                // Timer has reached 0, you can perform an action here
+                $("#timer").css("color", "red");
                 timerElement.innerHTML = "Time's up!";
               } else {
-                // Format the remaining time as HH:MM:SS
+                // Calculate hours, minutes, and seconds
                 var hours = Math.floor(countdownTime / 3600000);
                 var minutes = Math.floor((countdownTime % 3600000) / 60000);
                 var seconds = Math.floor((countdownTime % 60000) / 1000);
-                timerElement.innerHTML = hours + ":" + minutes + ":" + seconds;
+
+                // Format with leading zeros for single digits
+                var formattedHours = (hours < 10 ? "0" : "") + hours;
+                var formattedMinutes = (minutes < 10 ? "0" : "") + minutes;
+                var formattedSeconds = (seconds < 10 ? "0" : "") + seconds;
+
+                // Update the timer element with the formatted time
+                timerElement.innerHTML =
+                  formattedHours +
+                  ":" +
+                  formattedMinutes +
+                  ":" +
+                  formattedSeconds;
               }
             }
           }
@@ -224,7 +244,7 @@
           var timerInterval; // Variable to store the timer interval
           timerInterval = setInterval(updateTimer, 1000);
 
-          // Handle the "Stop" button click
+          // For handling the "Stop" button click
           $("#stopButton").click(function () {
             clearInterval(timerInterval); // Stop the timer
             var stopTimestamp = new Date().toLocaleString();
@@ -235,16 +255,16 @@
             var logEntries =
               JSON.parse(localStorage.getItem("logEntries")) || [];
 
-            // Add the stop entry to the array
+            // Add stop entry
             logEntries.unshift(stopEntryText); // Add at the beginning to keep it in chronological order
 
-            // Save the updated log entries back to local storage
+            // Saves updated log entries back to local storage
             localStorage.setItem("logEntries", JSON.stringify(logEntries));
 
-            // Display the updated log entries
+            // To display updated log entries
             displayLogEntries(logEntries);
 
-            // Reset the timer to zero
+            // Reset timer to zero
             countdownTime = 0;
             timerElement.innerHTML = "00:00:00";
             timerRunning = false;
@@ -254,16 +274,16 @@
         if (selectedWorkType) {
           var timestamp = new Date().toLocaleString();
 
-          // Retrieve existing log entries from local storage
+          // Retrieve existing log entries
           var logEntries = JSON.parse(localStorage.getItem("logEntries")) || [];
 
-          // Save the updated log entries back to local storage
+          // For saving the updated log entries
           localStorage.setItem("logEntries", JSON.stringify(logEntries));
 
           // Display the updated log entries
           displayLogEntries(logEntries);
 
-          // Update the work type text
+          // Updates work type text
           var workTypeText = document.getElementById("work-type-text");
           workTypeText.textContent = selectedWorkType + " in progress";
           var workTypeText2 = document.getElementById(work - type - text2);
