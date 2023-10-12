@@ -166,6 +166,12 @@
 
     <script>
       $(document).ready(function () {
+        var remainingTime = sessionStorage.getItem("remainingTime");
+        console.log("Remaining time:", remainingTime);
+
+        var stopEntryText = sessionStorage.getItem("stopEntryText");
+        console.log(stopEntryText);
+
         $("#start-work-button").click(function () {
           // Get the selected number of hours and work type
           var selectedHours = $("#numberInput").val(); // Get the value from the number input

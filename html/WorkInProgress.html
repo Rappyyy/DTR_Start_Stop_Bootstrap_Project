@@ -162,6 +162,9 @@
         // Retrieve data from session storage
         var selectedHours = sessionStorage.getItem("selectedHours");
         var selectedWorkType = sessionStorage.getItem("selectedWorkType");
+        var startTime = sessionStorage.getItem("startTime");
+
+        console.log("Started work at: ", startTime);
 
         // Display the selected work type on your page
         if (selectedWorkType) {
@@ -234,6 +237,11 @@
             var stopEntryText =
               selectedWorkType + " stopped at " + stopTimestamp;
 
+            //setting session  storage
+            sessionStorage.setItem("remainingTime", formatTime(remainingTime));
+            sessionStorage.setItem("stopTimestamp", stopTimestamp);
+            sessionStorage.setItem("stopEntryText", stopEntryText);
+
             // Retrieve existing log entries from local storage
             var logEntries =
               JSON.parse(localStorage.getItem("logEntries")) || [];
@@ -245,7 +253,9 @@
             localStorage.setItem("logEntries", JSON.stringify(logEntries));
 
             // To display updated log entries
-            displayLogEntries(logEntries);
+            // displayLogEntries(logEntries);
+
+            console.log("works till here");
 
             // Reset timer to zero
             countdownTime = 0;
