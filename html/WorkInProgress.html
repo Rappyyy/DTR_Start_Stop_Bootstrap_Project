@@ -136,6 +136,24 @@
         height: 295,
       });
 
+      function formatTime(seconds) {
+        var hours = Math.floor(seconds / 3600);
+        var minutes = Math.floor((seconds % 3600) / 60);
+        var secs = seconds % 60;
+
+        var formattedTime =
+          (hours < 10 ? "0" : "") +
+          hours +
+          ":" +
+          (minutes < 10 ? "0" : "") +
+          minutes +
+          ":" +
+          (secs < 10 ? "0" : "") +
+          secs;
+
+        return formattedTime;
+      }
+
       $(document).ready(function () {
         var timerRunning = true; // Variable to track if the timer is running
         var logEntriesPerPage = 5; // Number of log entries to display per page
@@ -209,6 +227,10 @@
             clearInterval(timerInterval); // Stop the timer
             var stopTimestamp = new Date().toLocaleString();
             console.log("Work stopped at: " + stopTimestamp);
+
+            var remainingTime = countdownTime / 1000;
+            console.log("Remaining time: " + formatTime(remainingTime));
+
             var stopEntryText =
               selectedWorkType + " stopped at " + stopTimestamp;
 
@@ -230,8 +252,7 @@
             timerElement.innerHTML = "00:00:00";
             timerRunning = false;
 
-            window.location.href =
-              "main.html?stop_time=" + encodeURIComponent(stopTimestamp);
+            window.location.href = "main.html";
           });
         }
 
