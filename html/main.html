@@ -171,12 +171,17 @@
           var selectedHours = $("#numberInput").val(); // Get the value from the number input
           var selectedWorkType = $("#select-work-type").val(); // Get the selected option's value
 
+          // Log the timestamp
+          var timestamp = new Date().toLocaleString();
+          console.log("Work started at: " + timestamp);
+
+          // Store the data in session storage
+          sessionStorage.setItem("selectedHours", selectedHours);
+          sessionStorage.setItem("selectedWorkType", selectedWorkType);
+          sessionStorage.setItem("startTime", timestamp);
+
           // Redirect to WorkInProgress.html with the selected hours and work type as query parameters
-          window.location.href =
-            "WorkInProgress.html?hours=" +
-            selectedHours +
-            "&work_type=" +
-            selectedWorkType;
+          window.location.href = "WorkInProgress.html";
         });
       });
     </script>

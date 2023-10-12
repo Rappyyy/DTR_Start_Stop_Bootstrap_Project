@@ -128,6 +128,7 @@
       </div>
       <!-- Summernote editor ending -->
     </div>
+
     <script>
       $("#summernote").summernote({
         placeholder: "Take notes here",
@@ -140,79 +141,33 @@
         var logEntriesPerPage = 5; // Number of log entries to display per page
         var currentPage = 1; // Current page
 
-        // Extract the selected hours and work type from the URL
-        var urlParams = new URLSearchParams(window.location.search);
-        var selectedHours = urlParams.get("hours");
-        var selectedWorkType = urlParams.get("work_type");
+        // Retrieve data from session storage
+        var selectedHours = sessionStorage.getItem("selectedHours");
+        var selectedWorkType = sessionStorage.getItem("selectedWorkType");
 
-        // Function to display log entries for the current page
-        function displayLogEntries(logEntries) {
-          var logContainer = document.querySelector(".log");
-          logContainer.innerHTML = ""; // Clear the log container
-
-          var startIndex = (currentPage - 1) * logEntriesPerPage;
-          var endIndex = startIndex + logEntriesPerPage;
-          var logEntriesToDisplay = logEntries.slice(startIndex, endIndex);
-
-          logEntriesToDisplay.forEach(function (entry) {
-            var logEntry = document.createElement("p");
-            logEntry.textContent = entry;
-            logContainer.appendChild(logEntry);
-          });
-
-          // Update pagination buttons
-          updatePaginationButtons();
+        // Display the selected work type on your page
+        if (selectedWorkType) {
+          $("#work-type-text").text(selectedWorkType + " in progress");
+          $("#work-type-text2").text(
+            "To stop your " +
+              selectedWorkType +
+              " time, simply click the " +
+              '"Stop work" button.'
+          );
         }
 
-        // Update pagination buttons
-        function updatePaginationButtons() {
-          var prevPageButton = document.getElementById("prevPageButton");
-          var nextPageButton = document.getElementById("nextPageButton");
-
-          prevPageButton.disabled = currentPage === 1;
-          nextPageButton.disabled =
-            currentPage * logEntriesPerPage >= savedLogEntries.length;
-        }
-
-        // Display log entries when the page loads
-        var savedLogEntries =
-          JSON.parse(localStorage.getItem("logEntries")) || [];
-        displayLogEntries(savedLogEntries);
-
-        // Handle previous page button click
-        $("#prevPageButton").click(function () {
-          if (currentPage > 1) {
-            currentPage--;
-            displayLogEntries(savedLogEntries);
-          }
-        });
-
-        // Handle next page button click
-        $("#nextPageButton").click(function () {
-          var maxPages = Math.ceil(savedLogEntries.length / logEntriesPerPage);
-          if (currentPage < maxPages) {
-            currentPage++;
-            displayLogEntries(savedLogEntries);
-          }
-        });
-
+        // Display the selected hours on your page
         if (selectedHours) {
-          // Convert the selected hours to milliseconds
           var countdownTime = selectedHours * 60 * 60 * 1000; // hours * minutes * seconds * milliseconds
-
-          // Update the countdown timer every second
           var timerElement = document.getElementById("timer");
-
-          // To change color of the text
-          var changeTextColor = document.getElementById("timer");
 
           function updateTimer() {
             if (timerRunning) {
-              countdownTime -= 1000; // Subtract 1 second
+              countdownTime -= 1000; // To subtract 1 second
 
               if (countdownTime <= 10000) {
                 // Check if there are 10 seconds or less remaining
-                $("#timer").css("color", "red"); // Change the text color to red
+                $("#timer").css("color", "red");
               }
 
               if (countdownTime <= 0) {
@@ -224,7 +179,7 @@
                   .addClass("btn-success")
                   .css("min-width", "200px");
               } else {
-                // Calculate hours, minutes, and seconds
+                // For calculating hours, minutes, and seconds
                 var hours = Math.floor(countdownTime / 3600000);
                 var minutes = Math.floor((countdownTime % 3600000) / 60000);
                 var seconds = Math.floor((countdownTime % 60000) / 1000);
@@ -253,6 +208,7 @@
           $("#stopButton").click(function () {
             clearInterval(timerInterval); // Stop the timer
             var stopTimestamp = new Date().toLocaleString();
+            console.log("Work stopped at: " + stopTimestamp);
             var stopEntryText =
               selectedWorkType + " stopped at " + stopTimestamp;
 
@@ -273,6 +229,9 @@
             countdownTime = 0;
             timerElement.innerHTML = "00:00:00";
             timerRunning = false;
+
+            window.location.href =
+              "main.html?stop_time=" + encodeURIComponent(stopTimestamp);
           });
         }
 
@@ -288,10 +247,10 @@
           // Display the updated log entries
           displayLogEntries(logEntries);
 
-          // Updates work type text
+          // Updates work type text depending on what the user selected
           var workTypeText = document.getElementById("work-type-text");
           workTypeText.textContent = selectedWorkType + " in progress";
-          var workTypeText2 = document.getElementById(work - type - text2);
+          var workTypeText2 = document.getElementById("work - type - text2");
           workTypeText2.textContent =
             "To stop your " +
             selectedWorkType +
