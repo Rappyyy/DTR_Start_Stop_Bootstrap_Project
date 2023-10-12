@@ -10,7 +10,7 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="WorkInProgress.css" />
+    <link rel="stylesheet" href="css\WorkInProgress.css" />
 
     <link
       rel="stylesheet"
@@ -149,8 +149,38 @@
           ["height", ["height"]],
         ],
         width: 600, // Adjust the width as needed
-        height: 325, // Adjust the height as needed
+        height: 290, // Adjust the height as needed
+        placeholder: "Enter your text here",
       });
+
+      // Function to show the toolbar
+      function showToolbar() {
+        $(".note-toolbar").show();
+      }
+
+      // Function to show the toolbar
+      function showToolbar() {
+        $(".note-toolbar").show();
+      }
+
+      // Function to show the toolbar
+      function showToolbar() {
+        $(".note-toolbar").show();
+      }
+
+      // Function to hide the toolbar
+      function hideToolbar() {
+        $(".note-toolbar").hide();
+      }
+
+      // Hide the toolbar by default
+      hideToolbar();
+
+      // Attach the showToolbar function to the focus event of the text area
+      $("#summernote").on("summernote.focus", showToolbar);
+
+      // Attach the hideToolbar function to the blur event of the text area
+      $("#summernote").on("summernote.blur", hideToolbar);
 
       function formatTime(seconds) {
         var hours = Math.floor(seconds / 3600);
