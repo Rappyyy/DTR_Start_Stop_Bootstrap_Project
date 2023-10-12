@@ -217,7 +217,12 @@
 
               if (countdownTime <= 0) {
                 $("#timer").css("color", "red");
-                timerElement.innerHTML = "Time's up!";
+                timerElement.innerHTML = "Time's Up!";
+                $("#stopButton")
+                  .text("Back to Main Menu")
+                  .removeClass("btn-danger")
+                  .addClass("btn-success")
+                  .css("min-width", "200px");
               } else {
                 // Calculate hours, minutes, and seconds
                 var hours = Math.floor(countdownTime / 3600000);
