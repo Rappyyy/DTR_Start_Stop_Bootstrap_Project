@@ -130,10 +130,26 @@
     </div>
 
     <script>
+      // $("#summernote").summernote({
+      //   placeholder: "Take notes here",
+      //   tabsize: 2,
+      //   height: 295,
+      // });
+
       $("#summernote").summernote({
-        placeholder: "Take notes here",
-        tabsize: 2,
-        height: 295,
+        toolbar: [
+          // [groupName, [list of button]]
+          ["style", ["bold", "italic", "underline", "clear"]],
+          ["fontname", ["fontname"]],
+          ["font", ["strikethrough", "superscript", "subscript"]],
+          ["fontsize", ["fontsize"]],
+          ["color", ["color"]],
+          ["para", ["ul", "ol", "paragraph"]],
+          ["table", ["table"]],
+          ["height", ["height"]],
+        ],
+        width: 600, // Adjust the width as needed
+        height: 325, // Adjust the height as needed
       });
 
       function formatTime(seconds) {
