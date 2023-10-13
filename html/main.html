@@ -104,16 +104,19 @@
           <!-- Select form ending -->
 
           <!-- Input hours form starting -->
+
           <div class="container mt-4">
             <div class="row">
               <div class="col"></div>
               <div class="col">
                 <div class="form-group w-75 ms-5">
+                  <label><small>Must be 1-12 only</small></label>
                   <input
                     type="number"
                     class="form-control"
                     id="numberInput"
                     value="1"
+                    required
                   />
                 </div>
               </div>
@@ -166,6 +169,15 @@
 
     <script>
       $(document).ready(function () {
+        $("#numberInput").change(function () {
+          var inputhours = $("#numberInput").val();
+          if (inputhours <= 0 || inputhours > 12) {
+            $("#start-work-button").prop("disabled", true);
+          } else {
+            $("#start-work-button").prop("disabled", false);
+          }
+        });
+
         var remainingTime = localStorage.getItem("remainingTime");
         console.log("Remaining time: ", remainingTime);
 
