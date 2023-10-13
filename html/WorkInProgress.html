@@ -148,7 +148,7 @@
           ["table", ["table"]],
           ["height", ["height"]],
         ],
-        width: 600, // Adjust the width as needed
+        width: 600, // Change width lang as needed
         height: 290, // Adjust the height as needed
         placeholder: "Enter your text here",
       });
@@ -163,13 +163,13 @@
         $(".note-toolbar").hide();
       }
 
-      // Hide the toolbar by default
+      // Hides toolbar by default
       hideToolbar();
 
-      // Attach the showToolbar function to the focus event of the text area
+      // To trigger toolbar when text area is clicked
       $("#summernote").on("summernote.focus", showToolbar);
 
-      // Attach the hideToolbar function to the blur event of the text area
+      // To trigger toolbar when text area is not clicked
       $("#summernote").on("summernote.blur", hideToolbar);
 
       function formatTime(seconds) {
@@ -196,13 +196,18 @@
         var currentPage = 1; // Current page
 
         // Retrieve data from session storage
-        var selectedHours = sessionStorage.getItem("selectedHours");
-        var selectedWorkType = sessionStorage.getItem("selectedWorkType");
-        var startTime = sessionStorage.getItem("startTime");
+        var remainingTime = localStorage.getItem("remainingTime");
+        var selectedHours = localStorage.getItem("selectedHours");
 
-        console.log("Started work at: ", startTime);
+        console.log("remaining time", remainingTime);
+
+        var selectedWorkType = localStorage.getItem("selectedWorkType");
+        var startTime = localStorage.getItem("startTime");
+
+        console.log(selectedWorkType + " Started at " + startTime);
 
         // Display the selected work type on your page
+
         if (selectedWorkType) {
           $("#work-type-text").text(selectedWorkType + " in progress");
           $("#work-type-text2").text(
@@ -221,6 +226,10 @@
           function updateTimer() {
             if (timerRunning) {
               countdownTime -= 1000; // To subtract 1 second
+              localStorage.setItem(
+                "remainingTime",
+                formatTime(countdownTime / 1000)
+              );
 
               if (countdownTime <= 10000) {
                 // Check if there are 10 seconds or less remaining
@@ -264,19 +273,19 @@
           // For handling the "Stop" button click
           $("#stopButton").click(function () {
             clearInterval(timerInterval); // Stop the timer
+            console.log("works till here");
             var stopTimestamp = new Date().toLocaleString();
             console.log("Work stopped at: " + stopTimestamp);
 
             var remainingTime = countdownTime / 1000;
-            console.log("Remaining time: " + formatTime(remainingTime));
 
             var stopEntryText =
               selectedWorkType + " stopped at " + stopTimestamp;
 
             //setting session  storage
-            sessionStorage.setItem("remainingTime", formatTime(remainingTime));
-            sessionStorage.setItem("stopTimestamp", stopTimestamp);
-            sessionStorage.setItem("stopEntryText", stopEntryText);
+            localStorage.setItem("remainingTime", formatTime(remainingTime));
+            localStorage.setItem("stopTimestamp", stopTimestamp);
+            localStorage.setItem("stopEntryText", stopEntryText);
 
             // Retrieve existing log entries from local storage
             var logEntries =
@@ -290,8 +299,6 @@
 
             // To display updated log entries
             // displayLogEntries(logEntries);
-
-            console.log("works till here");
 
             // Reset timer to zero
             countdownTime = 0;
@@ -312,7 +319,7 @@
           localStorage.setItem("logEntries", JSON.stringify(logEntries));
 
           // Display the updated log entries
-          displayLogEntries(logEntries);
+          // displayLogEntries(logEntries);
 
           // Updates work type text depending on what the user selected
           var workTypeText = document.getElementById("work-type-text");

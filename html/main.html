@@ -166,10 +166,10 @@
 
     <script>
       $(document).ready(function () {
-        var remainingTime = sessionStorage.getItem("remainingTime");
-        console.log("Remaining time:", remainingTime);
+        var remainingTime = localStorage.getItem("remainingTime");
+        console.log("Remaining time: ", remainingTime);
 
-        var stopEntryText = sessionStorage.getItem("stopEntryText");
+        var stopEntryText = localStorage.getItem("stopEntryText");
         console.log(stopEntryText);
 
         $("#start-work-button").click(function () {
@@ -182,9 +182,9 @@
           console.log("Work started at: " + timestamp);
 
           // Store the data in session storage
-          sessionStorage.setItem("selectedHours", selectedHours);
-          sessionStorage.setItem("selectedWorkType", selectedWorkType);
-          sessionStorage.setItem("startTime", timestamp);
+          localStorage.setItem("selectedHours", selectedHours);
+          localStorage.setItem("selectedWorkType", selectedWorkType);
+          localStorage.setItem("startTime", timestamp);
 
           // Redirect to WorkInProgress.html with the selected hours and work type
           window.location.href = "WorkInProgress.html";
